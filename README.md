@@ -1,5 +1,15 @@
 # win-install-docker
 
+This repository contains a powershell script to install docker. Please do a reboot after the installation.
+
+## Test Docker
+
+To test the Docker installation run the command:
+
+```ps
+docker run hello-world
+```
+
 ## Maintain
 
 Check if there is a new version of Docker:
@@ -9,6 +19,8 @@ Check if there is a new version of Docker:
 Check if there is a new version of Docker Compose:
 
 - [Docker Compose releases](https://github.com/docker/compose/releases/)
+
+## References
 
 Links:
 

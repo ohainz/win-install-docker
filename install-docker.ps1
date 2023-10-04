@@ -20,11 +20,19 @@ function Add-ToPathVariable($PathToAdd) {
     [Environment]::SetEnvironmentVariable( "Path", $NewPathArray, "Machine" )
 }
 
-function Add-HyperV {
+function Add-FeatureHyperV {
     $hyperv = Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -Online
     if ($hyperv.State -ne "Enabled") {
         Write-Host "Try to enable Hyper-V ..."
         Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
+    }
+}
+
+function Add-FeatureContainers {
+    $hyperv = Get-WindowsOptionalFeature -FeatureName Containers -Online
+    if ($hyperv.State -ne "Enabled") {
+        Write-Host "Try to enable Containers ..."
+        Enable-WindowsOptionalFeature -Online -FeatureName Containers -All -NoRestart
     }
 }
 
@@ -71,14 +79,13 @@ if (-Not(Test-Administrator)) {
     $host.Exit()
 }
 
-# Enable Hyper-V
-Add-HyperV
+# Enable Feature Hyper-V
+Add-FeatureHyperV
+# Enable Feature Containers
+Add-FeatureContainers
 # Stop-Docker-Service
 Stop-DockerService
 # Add or update Docker-Files
 Add-DockerFiles
 # Start the Docker-Service
 Start-DockerService
-
-Start-Process "cmd" -ArgumentList ("/c","docker","--version") -Wait
-Start-Process "cmd" -ArgumentList ("/c","docker-compose","--version") -Wait
