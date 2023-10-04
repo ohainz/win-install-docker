@@ -20,6 +20,13 @@ Check if there is a new version of Docker Compose:
 
 - [Docker Compose releases](https://github.com/docker/compose/releases/)
 
+Replace the URLs in the [PowerShell script](./install-docker.ps1):
+
+```ps
+$DockerDownloadUrl = "https://download.docker.com/win/static/stable/x86_64/docker-24.0.6.zip"
+$DockerComposeDownloadUrl = "https://github.com/docker/compose/releases/download/v2.22.0/docker-compose-windows-x86_64.exe"
+```
+
 ## References
 
 Links:
