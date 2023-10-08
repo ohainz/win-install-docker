@@ -1,6 +1,6 @@
 # win-install-docker
 
-This repository contains a powershell script to install docker. Please do a reboot after the installation.
+This repository contains a powershell script to install docker. Please do a reboot after the installation. It allows you to install docker on Window 10 Professional (Windows 10 Home is not supported, because the features **Hyper-V** and **Containers** are required for the installation). There is no uninstall script. You need to remove the components manually if you want to remove docker.
 
 ## Test Docker
 
