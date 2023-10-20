@@ -63,6 +63,11 @@ function Add-DockerFiles
     if (-Not($pathVariableEntries -Contains $DockerPath)) {
         Add-ToPathVariable($DockerPath)
     }
+
+    if (-Not(Test-Path($DockerPath + "\cli-plugins"))) {
+        New-Item -Path "$DockerPath" -Name "cli-plugins" -ItemType "directory"
+    }
+    Copy-Item $DockerComposeFile -Destination $($DockerPath + "\cli-plugins\docker-compose.exe")
 }
 
 function Start-DockerService
